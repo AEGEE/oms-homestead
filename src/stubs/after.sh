@@ -9,8 +9,8 @@ cd /home/vagrant/oms-project/oms-neo-core
 cp .env.example .env
 
 #TODO: modify .env
-sed s/3306/5432/ .env > .env
-sed s/mysql/pgsql/ .env > .env
+sed -i s/3306/5432/ .env 
+sed -i s/mysql/pgsql/ .env
 echo "#REMEMBER to run 'php artisan config:cache' every time you update this file" >> .env
 
 composer install
@@ -18,4 +18,4 @@ php artisan config:cache
 php artisan migrate
 php artisan key:generate
 php artisan db:seed
-
+php artisan config:cache
