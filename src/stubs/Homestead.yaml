@@ -1,8 +1,9 @@
 ---
 ip: "192.168.10.10"
-memory: 2048
+memory: 1024
 cpus: 1
 provider: virtualbox
+hostname: aegee-virtual.nowhere.nodomain
 
 authorize: ~/.ssh/id_rsa.pub
 
@@ -10,12 +11,16 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: ~/Code
-      to: /home/vagrant/Code
+    - map: CHANGEME/oms-project #NOTE this is set according to where the script is run.
+      to: /home/vagrant/oms-project
 
 sites:
-    - map: homestead.app
-      to: /home/vagrant/Code/Laravel/public
+    - map: omscore
+      to: /home/vagrant/oms-project/oms-neo-core/public
+
+#sites:
+#    - map: homestead.app
+#      to: /home/vagrant/Code/Laravel/public
 
 databases:
     - homestead
@@ -26,9 +31,15 @@ databases:
 #       client-id: foo
 #       client-token: bar
 
-# ports:
-#     - send: 50000
-#       to: 5000
+ports:
+    - send: 80
+      to: 8080
+    - send: 8081
+      to: 8081
+    - send: 8082
+      to: 8082
+    - send: 8083
+      to: 8083
 #     - send: 7777
 #       to: 777
 #       protocol: udp
