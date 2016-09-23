@@ -32,16 +32,17 @@ cd ../oms-events
 
 npm install
 
+mv nginx.conf.example nginx.conf
 sudo ln -s /home/vagrant/oms-project/oms-events/nginx.conf /etc/nginx/sites-enabled/omsevents
 sudo systemctl reload nginx.service
-
 
 #get api key
 xtoken=$(curl --data "username=flaviu@glitch.ro&password=1234" localhost/api/login | jq -r ".message")
 
 apikey=$(curl --header "X-Auth-Token: "${xtoken}"" localhost/api/getSharedSecret | jq -r ".key")
 
-sed -i "s|CHANGEME|"${apikey}"|" lib/config/config*.json
+cp lib/config/configFile.json.example lib/config/configFile.json
+sed -i "s|CHANGEME|"${apikey}"|" lib/config/configFile.json
 
 ## New detached tmux session called ``Workstation''
 tmux new-session -s Workstation -d
