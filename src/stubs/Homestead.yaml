@@ -4,6 +4,7 @@ memory: 1024
 cpus: 1
 provider: virtualbox
 hostname: aegee-virtual.nowhere.nodomain
+name: homestead-7
 
 authorize: ~/.ssh/id_rsa.pub
 
@@ -32,13 +33,13 @@ databases:
 #       client-token: bar
 
 ports:
-    - send: 80
+    - send: 8180
       to: 8080
-    - send: 8081
+    - send: 8181
       to: 8081
-    - send: 8082
+    - send: 8182
       to: 8082
-    - send: 8083
+    - send: 8183
       to: 8083
 #     - send: 7777
 #       to: 777
